@@ -1,0 +1,46 @@
+/*
+
+class Node {
+    Node next;
+    Node prev;
+    int val;
+
+    Node(int val) {
+        this.val = val;
+        next = null;
+        prev = null;
+    }
+}
+*/
+public static Node deleteElement(Node head,int k) {
+    //enter your code here
+    if(head.next == null) {
+        return null;
+    }
+    
+    
+    int size = 0;
+    Node temp = head;
+    while(temp != null) {
+        temp = temp.next;
+        size++;
+    }
+    
+    if(k == size) {
+        return head.next;
+    }
+    
+    //find previous node
+    int ptf = size - k; // position to find
+    Node prev = head; // previous node
+    int cp = 1; // current position
+    
+    while(cp != ptf) {
+        prev = prev.next;
+        cp++;
+    }
+    
+    prev.next = prev.next.next;
+    return head;
+
+}
