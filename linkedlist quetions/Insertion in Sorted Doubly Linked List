@@ -1,0 +1,32 @@
+/*
+class Node
+{
+   int data;
+   Node next, prev;
+};
+*/
+static Node sortedInsertion(Node head, Node newNode)
+    {
+        // Code
+        Node curr = head;
+        Node prev = null;
+        if(head == null || newNode.data <= head.data){
+            newNode.next =head;
+            head.prev = newNode;
+            head = newNode;
+        }else{
+            while(curr != null && newNode.data > curr.data){
+                prev = curr;
+                curr = curr.next;
+            }
+            newNode.prev = prev;
+            newNode.next = curr;
+            prev.next = newNode;
+            if(curr != null){
+                curr.prev = newNode;
+            }
+        }
+        return head;
+      
+        
+    }
