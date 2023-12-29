@@ -1,0 +1,25 @@
+// your code goes here
+class BankAccount{
+    int balance;
+    String name;
+
+    BankAccount(int balance,String name){
+        this.balance = balance;
+        this.name = name;
+    }
+    void depositFund(int fund){
+        balance = balance + fund;
+
+    }
+    boolean withdrawFund(int amount){
+        if(amount>balance){
+            return false;
+        }else{
+            balance = balance - amount;
+            return true;
+        }
+
+
+    }
+
+}
