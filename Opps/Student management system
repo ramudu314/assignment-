@@ -1,0 +1,48 @@
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+// don't change the name of this class
+// you can add inner classes if needed
+
+
+class Main {
+    static class Student {
+        String name;
+        int rollNo;
+        int marks1;
+        int marks2;
+        Student(String name, int rollNo, int marks1, int marks2){
+            this.name = name;
+            this.rollNo = rollNo;
+            this.marks1 = marks1;
+            this.marks2 = marks2;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+
+        int numStudents = scanner.nextInt();
+
+        Student[] students = new Student[numStudents];
+
+        for (int i = 0; i < numStudents; i++) {
+            Student s = new Student(scanner.next(), scanner.nextInt(),scanner.nextInt(), scanner.nextInt());
+
+
+           students [i] = s;
+
+        }
+        for (int i = 0; i < numStudents; i++) {
+
+            System.out.println("Name : " + students[i].name);
+            System.out.println("RollNo : " + students[i].rollNo);
+            System.out.println("Marks1 : " + students[i].marks1);
+            System.out.println("Marks2 : " + students[i].marks2);
+
+            System.out.println();
+            System.out.println();
+        }
+    }
+}
