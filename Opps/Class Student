@@ -1,0 +1,52 @@
+static class Student
+{
+        String name;
+        int eng;
+        int maths;
+        int hindi;
+        public Student(String name, int eng, int maths, int hindi) {
+            this.name = name;
+            this.eng = eng;
+            this.maths = maths;
+            this.hindi = hindi;
+        }
+}
+static Student[] createStudentArray(int n)
+    {
+       //Enter your code here
+        Student[] students = new Student[n];
+
+        for (int i = 0; i < n; i++) {
+            String name = sc.next();
+            int eng = sc.nextInt();
+            int maths = sc.nextInt();
+            int hindi = sc.nextInt();
+            students[i] = new Student(name, eng, maths, hindi);
+        }
+
+        return students;
+    }
+    
+    static int engAverage(Student st[], int n)
+    {
+        //Enter your code here
+        int sum = 0;
+
+        for (Student student : st) {
+            sum += student.eng;
+        }
+
+        return sum / n;
+    }
+    
+    static int avgPercentageOfClass(Student st[], int n)
+    {
+        //Enter your code here
+        int totalPercentage = 0;
+
+        for (Student student : st) {
+            int avgPercentage = (student.eng + student.maths + student.hindi) / 3;
+            totalPercentage += avgPercentage;
+        }
+        return totalPercentage / n;
+    }
