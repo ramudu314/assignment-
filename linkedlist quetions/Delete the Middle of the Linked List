@@ -1,0 +1,32 @@
+/*
+class Node {
+    Node next;
+    int val;
+
+    Node(int val) {
+        this.val = val;
+        next = null;
+    }
+}
+*/
+
+public static Node deleteMiddleElement(Node head) {
+		// return the head of the modified Linked List
+        if(head.next==null){
+            Node ans = new Node(-1);
+            return ans;
+        }
+
+
+        Node slow = head;
+        Node fast = head;
+        Node prevSlow = head;
+        while(fast!=null && fast.next!=null){
+            prevSlow = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        // slow is the middle
+        prevSlow.next = prevSlow.next.next;
+        return head;
+    }
