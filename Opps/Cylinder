@@ -1,0 +1,43 @@
+class Circle {
+    double radius;
+
+    Circle(double radius) {
+        this.radius = Math.max(0, radius);
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public double getArea() {
+        return Math.PI * radius * radius;
+    }
+
+    public void printInfo() {
+        System.out.println("Circle - Radius: " + getRadius());
+        System.out.println("Circle - Area: " + getArea());
+    }
+}
+
+class Cylinder extends Circle {
+    private double height;
+
+    Cylinder(double radius, double height) {
+        super(radius);
+        
+        this.height = Math.max(0, height);
+    }
+
+    public double getHeight() {
+        return height;
+    }
+    public double getVolume() {
+        return getArea() * height;
+    }
+
+    public void printInfo() {
+        super.printInfo();  
+        System.out.println("Cylinder - Height: " + getHeight());
+        System.out.println("Cylinder - Volume: " + getVolume());
+    }
+}
