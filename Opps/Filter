@@ -1,0 +1,56 @@
+// implement Filter class here
+class Filter {
+    public String filter(String str, char ch) {
+        StringBuilder filter = new StringBuilder();
+        int n = str.length();
+        // char c = charAt(i);
+        for(int i=0;i<n;i++){
+            char c = str.charAt(i);
+            if(c != ch){
+                filter.append(c);
+            }
+        }
+        return filter.toString();
+        
+    }
+
+    public int[] filter(int[] arr, int el) {
+        int count = 0;
+        for (int num : arr) {
+            if (num == el) {
+                count++;
+            }
+        }
+        int[] filteredArr = new int[arr.length - count];
+        int index = 0;
+        for (int num : arr) {
+            if (num != el) {
+                filteredArr[index++] = num;
+            }
+        }
+        return filteredArr;
+    }
+    public char[] filter(char[] arr, int ch) {
+        int count = 0;
+        for (char c : arr) {
+            if (c == ch) {
+                count++;
+            }
+        }
+        char[] filteredArr = new char[arr.length - count];
+        int index = 0;
+        for (char c : arr) {
+            if (c != ch) {
+                filteredArr[index++] = c;
+            }
+        }
+        return filteredArr;
+    }
+
+    public String filter(String a, String b) {
+        if (a.contains(b)) {
+            return filter(a.replace(b, ""), b);
+        }
+        return a;
+    }
+}
