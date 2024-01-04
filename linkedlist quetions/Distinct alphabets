@@ -1,0 +1,30 @@
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+// don't change the name of this class
+// you can add inner classes if needed
+class Main {
+   static void countOccurrences(String s) {
+       Map<Character, Integer> counts = new HashMap<>();
+
+        // Iterate through each character in the string
+        for (char ch : s.toCharArray()) {
+            // Check if the character is a lowercase alphabet
+            if ('a' <= ch && ch <= 'z') {
+                // Update the count for the corresponding alphabet in the HashMap
+                counts.put(ch, counts.getOrDefault(ch, 0) + 1);
+            }
+        }
+
+        // Print the space-separated counts
+        for (char ch = 'a'; ch <= 'z'; ch++) {
+            System.out.print(counts.getOrDefault(ch, 0) + " ");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        countOccurrences(s);
+    }
+}
