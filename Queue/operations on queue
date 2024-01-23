@@ -1,0 +1,21 @@
+// enqueue():- that takes the queue
+// and the integer to be added as a parameter.
+public static void enqueue(Queue<Integer> qu, int x)
+    {
+        // enter your code here
+        qu.add(x);
+    }
+
+    public static void dequeue(Queue<Integer> qu) {
+        if (!qu.isEmpty()) {
+            qu.remove();
+        }
+    }
+
+    public static void displayfront(Queue<Integer> qu) {
+        if (qu.isEmpty()) {
+            System.out.println("0");
+        } else {
+            System.out.println(qu.peek());
+        }
+    }
