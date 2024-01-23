@@ -1,0 +1,124 @@
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+// don't change the name of this class
+// you can add inner classes if needed
+class CircularDequeue {
+    int[] queue;
+    int front, rear, size, count;
+
+    public CircularDequeue(int n) {
+        size = n;
+        queue = new int[size];
+        front = rear = -1;
+        count = 0;
+    }
+
+    public boolean pushFront(int x) {
+        if (isFull()) {
+            return false;
+        }
+
+        if (isEmpty()) {
+            front = rear = 0;
+        } else {
+            front = (front - 1 + size) % size;
+        }
+
+        queue[front] = x;
+        count++;
+        return true;
+    }
+
+    public boolean pushRear(int x) {
+        if (isFull()) {
+            return false;
+        }
+
+        if (isEmpty()) {
+            front = rear = 0;
+        } else {
+            rear = (rear + 1) % size;
+        }
+
+        queue[rear] = x;
+        count++;
+        return true;
+    }
+
+    public int popFront() {
+        if (isEmpty()) {
+            return -1;
+        }
+
+        int element = queue[front];
+        count--;
+
+        if (count == 0) {
+            front = rear = -1;
+        } else {
+            front = (front + 1) % size;
+        }
+
+        return element;
+    }
+
+    public int popRear() {
+        if (isEmpty()) {
+            return -1;
+        }
+
+        int element = queue[rear];
+        count--;
+
+        if (count == 0) {
+            front = rear = -1;
+        } else {
+            rear = (rear - 1 + size) % size;
+        }
+
+        return element;
+    }
+
+    public boolean isFull() {
+        return count == size;
+    }
+
+    public boolean isEmpty() {
+        return count == 0;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Read input
+        int n = scanner.nextInt();
+        int q = scanner.nextInt();
+
+        CircularDequeue cd = new CircularDequeue(n);
+
+        // Process queries
+        for (int i = 0; i < q; i++) {
+            int queryType = scanner.nextInt();
+
+            if (queryType == 1) {
+                int position = scanner.nextInt();
+                int element = scanner.nextInt();
+                if (position == 1) {
+                    System.out.println(cd.pushFront(element));
+                } else {
+                    System.out.println(cd.pushRear(element));
+                }
+            } else if (queryType == 2) {
+                int position = scanner.nextInt();
+                if (position == 1) {
+                    System.out.println(cd.popFront());
+                } else {
+                    System.out.println(cd.popRear());
+                }
+            }
+        }
+    }
+}
