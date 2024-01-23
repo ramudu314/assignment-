@@ -1,0 +1,40 @@
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+// don't change the name of this class
+// you can add inner classes if needed
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        int[] result = findNearestSmaller(arr, n);
+        for (int i = 0; i < n; i++) {
+            System.out.print(result[i] + " ");
+        }
+    }
+
+    static int[] findNearestSmaller(int[] arr, int n) {
+        Stack<Integer> stack = new Stack<>();
+        int[] result = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            // Pop elements from the stack while they are greater than or equal to the current element
+            while (!stack.isEmpty() && arr[stack.peek()] > arr[i]) {
+                stack.pop();
+            }
+
+            // If the stack is not empty, the nearest smaller element is at the top of the stack
+            // Otherwise, there is no smaller element, so set the result to -1
+            result[i] = stack.isEmpty() ? -1 : arr[stack.peek()];
+
+            stack.push(i);
+        }
+
+        return result;
+    }
+}
