@@ -1,0 +1,42 @@
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+// don't change the name of this class
+// you can add inner classes if needed
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input reading
+        int n = scanner.nextInt();
+        int[] scores = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            scores[i] = scanner.nextInt();
+        }
+
+        // Function call
+        int result = findStrength(scores);
+
+        // Output
+        System.out.println(result);
+
+        scanner.close();
+    }
+
+    private static int findStrength(int[] scores) {
+        Stack<Integer> stack = new Stack<>();
+        int maxGrowth = -1;
+
+        for (int i = 0; i < scores.length; i++) {
+            while (!stack.isEmpty() && scores[i] > scores[stack.peek()]) {
+                int current = stack.pop();
+                maxGrowth = Math.max(maxGrowth, scores[i] - scores[current]);
+            }
+
+            stack.push(i);
+        }
+
+        return maxGrowth == -1 ? -1 : maxGrowth;
+    }
+}
