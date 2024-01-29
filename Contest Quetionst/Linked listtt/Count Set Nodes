@@ -1,0 +1,46 @@
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+// don't change the name of this class
+// you can add inner classes if needed
+class Node{
+    int data;
+    Node next;
+
+    Node(int data){
+        this.data = data;
+        this.next = null;
+    }
+}
+class LinkedList{
+    Node head;
+
+    int countOfSetBit(Node head){
+        int count =0;
+        Node current = head;
+        while(current != null){
+            if((current.data & 1)==1){
+                count++;
+            }
+            current = current.next;
+        }
+        return count;
+    }
+}
+class Main {
+    public static void main (String[] args) {
+        // Your code here
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+
+        LinkedList list = new LinkedList();
+         for(int i=0;i<N;i++){
+             int val = sc.nextInt();
+             Node newNode = new Node(val);
+             newNode.next = list.head;
+             list.head = newNode;
+         }
+         int result = list.countOfSetBit(list.head);
+         System.out.println(result);
+    }
+}
