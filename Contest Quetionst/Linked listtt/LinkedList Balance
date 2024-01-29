@@ -1,0 +1,25 @@
+// class Node {
+//     int data;
+//     Node next;
+
+//     public Node(int data) {
+//         this.data = data;
+//         this.next = null;
+//     }
+// } 
+
+public static boolean findDifference(Node head) {
+// write your code here
+   if(head == null){
+       return false;
+   }
+   int sum =0;
+   int count =0;
+   Node curr = head;
+   while(curr != null){
+       sum += curr.data;
+       count++;
+       curr = curr.next;
+   }
+   return (sum % count ==0);
+}
