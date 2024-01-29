@@ -1,0 +1,55 @@
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+// don't change the name of this class
+// you can add inner classes if needed
+class Main {
+    public static String intfixPostFIx(String intfix){
+        StringBuilder postfix = new StringBuilder();
+        Stack<Character> stack = new Stack<>();
+
+        for(char c:intfix.toCharArray()){
+            if(Character.isLetter(c)){
+                postfix.append(c);
+            }else if(c == '('){
+                stack.push(c);
+            }else if(c == ')'){
+                while(!stack.isEmpty() && stack.peek() != '('){
+                    postfix.append(stack.pop());
+                }
+                stack.pop();
+            }else{
+                while(!stack.isEmpty() && getPrecedence(stack.peek()) >= getPrecedence(c)){
+                    postfix.append(stack.pop());
+                }
+                stack.push(c);
+            }
+        }
+        while(!stack.isEmpty()){
+            postfix.append(stack.pop());
+        }
+        return postfix.toString();
+    }
+    private static int getPrecedence(char operator){
+        switch (operator){
+            case '^':
+            return 3;
+            case '*':
+            case '/':
+            return 2;
+            case '+':
+            case '-':
+            return 1;
+            default:
+            return 0;
+        }
+    }
+    public static void main (String[] args) {
+        // Your code here
+        Scanner sc = new Scanner(System.in);
+        String in = sc.nextLine();
+
+        String postfix = intfixPostFIx(in);
+        System.out.println(postfix);
+    }
+}
