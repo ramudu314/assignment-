@@ -1,0 +1,35 @@
+/*
+class Node {
+    Node next;
+    int data;
+
+    Node(int data) {
+        this.data = data;
+        next = null;
+    }
+}
+*/
+
+  static Node addNumber(Node first, Node second){
+// return the head of the modified linked list
+    Node dummyHead = new Node(-1);
+    Node ans = dummyHead;
+    int carry = 0;
+    while(first != null || second != null || carry>0){
+        int a = 0; 
+        int b=0;
+        if(first!=null){
+            a = first.data;
+            first = first.next;
+        }
+        if(second != null){
+            b = second.data;
+            second = second.next;
+        }
+        int sum = a+b+carry;
+        ans.next = new Node(sum%10);
+        carry = sum/10;
+        ans = ans.next;
+    }
+    return dummyHead.next;
+}
