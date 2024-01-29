@@ -1,0 +1,48 @@
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+// don't change the name of this class
+// you can add inner classes if needed
+class Main {
+    public static void main (String[] args) {
+        // Your code here
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+
+        for(int t = 0;t<T;t++){
+            int N = sc.nextInt();
+            int[] height = new int[N];
+            for(int i=0;i<N;i++){
+                height[i] = sc.nextInt();
+            }
+            int[] result = countVisible(height);
+            for(int i=0;i<N;i++){
+                System.out.print(result[i]+ " ");
+            }
+            System.out.println();
+        }
+    }
+    private static int[] countVisible(int[] height){
+        int N = height.length;
+        int[] countVisible = new int[N];
+        for(int i=0;i<N;i++){
+            countVisible[i]=0;
+
+            for(int j =i+1;j<N;j++){
+                if(height[j] == height[i]){
+                    countVisible[i]++;
+                }else if(height[j] > height[i]){
+                    break;
+                }
+            }
+            for(int k =i-1;k >= 0;k--){
+                if(height[k] == height[i]){
+                    countVisible[i]++;
+                }else if (height[k] > height[i]){
+                    break;
+                }
+            }
+        }
+        return countVisible;
+    }
+}
