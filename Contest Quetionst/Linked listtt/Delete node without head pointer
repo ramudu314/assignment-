@@ -1,0 +1,23 @@
+/*
+class Node {
+    Node next;
+    int val;
+
+    Node(int val) {
+        this.val = val;
+        next = null;
+    }
+}
+*/
+
+//Enter your code here
+public static void deleteNode(Node D) {
+        // Check if D is not the last node (given in the problem statement)
+        if (D != null && D.next != null) {
+            Node nextNode = D.next;
+            D.val = nextNode.val;
+            D.next = nextNode.next;
+            // You may also want to set nextNode to null to help with garbage collection
+            nextNode = null;
+        }
+}
