@@ -1,0 +1,36 @@
+/*
+class Node {
+    Node next;
+    int data;
+
+    Node(int data) {
+        this.data = data;
+        next = null;
+    }
+}
+*/
+
+  static Node addOne(Node head){
+// return the head of the modified linked list
+
+   if(head == null){
+       return head;
+   }
+   Node dummy = new Node(0);
+   dummy.next = head;
+   Node curr = dummy;
+
+   int carry = 1;
+   while(curr.next != null){
+       int sum = curr.next.data + carry;
+       carry = sum / 10;
+       curr.next.data = sum%10;
+       curr = curr.next;
+   }
+   if(carry > 0){
+       Node newNode = new Node(carry);
+       newNode.next = null;
+       curr.next = newNode;
+   }
+   return dummy.next;
+}
