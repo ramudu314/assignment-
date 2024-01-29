@@ -1,0 +1,35 @@
+/*
+
+ class Node 
+{  
+    int data;  
+    Node next;  
+    Node(int x)  
+    {  
+        data = x;  
+        next = null;  
+    }  
+};
+*/
+static Node deleteEven(Node head){
+//Enter your code here
+   if(head == null){
+       return null;
+   }
+   Node curr = head;
+   Node prev = null;
+
+   do{
+       if(curr.data%2==0){
+           if(curr == head){
+               head = curr.next;
+           }else{
+               prev.next = curr.next;
+           }
+       }else{
+           prev = curr;
+       }
+       curr = curr.next;
+   }while(curr != head);
+   return head;
+}
