@@ -1,0 +1,24 @@
+/*
+    class Node {
+        Node next;
+        int val;
+        Node prev;
+        Node(int val) {
+            this.val = val;
+            next = null;
+            prev = null;
+        }
+    }
+*/
+
+
+public static int rightCount(Node node) {
+        // your code
+        int sum =0;
+        Node current = node.next;
+        while(current != null){
+            sum += current.val;
+            current = current.next;
+        }
+        return sum;
+}
